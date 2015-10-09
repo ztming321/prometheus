@@ -32,6 +32,10 @@ build:
 	@echo ">> building binaries"
 	@./scripts/build.sh
 
+tarballs:
+	@echo ">> building release tarballs"
+	@./scripts/release_tarballs.sh
+
 docker:
 	@docker build -t prometheus:$(shell git rev-parse --short HEAD) .
 
@@ -39,6 +43,5 @@ assets:
 	@echo ">> writing assets"
 	@$(GO) get github.com/jteeuwen/go-bindata/...
 	@$(GO) generate ./web/blob
-
 
 .PHONY: all format build test vet docker assets
